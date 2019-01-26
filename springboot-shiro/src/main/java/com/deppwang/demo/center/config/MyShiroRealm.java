@@ -82,11 +82,11 @@ public class MyShiroRealm extends AuthorizingRealm {
         //newPassword(密文密码)：d3c59d25033dbf980d29554025c23a75
         String newPassword = new SimpleHash("MD5",//散列算法:这里使用MD5算法
                 "123456",//明文密码
-                ByteSource.Util.bytes("admin8d78869f470951332959580424d4bf4f"),//salt：admin + 8d78869f470951332959580424d4bf4f
+                ByteSource.Util.bytes("admin8d78869f470951332959580424d4bf4f"),//salt：用户名 + salt
                 2//散列的次数，相当于MD5(MD5(**))
         ).toHex();
 
-        //生成一个32位的salt
+        //生成一个32位数的salt
         byte[] saltByte = new byte[16];
         SecureRandom random = new SecureRandom();
         random.nextBytes(saltByte);

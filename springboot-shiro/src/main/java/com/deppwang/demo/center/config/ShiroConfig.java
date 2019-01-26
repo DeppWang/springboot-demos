@@ -80,10 +80,8 @@ public class ShiroConfig {
         //authc:所有url都必须认证通过才可以访问;
         filterChainDefinitionMap.put("/**", "authc");
 
-//        filterChainDefinitionMap.put("/login", "authc");
 //        //user:需要已登录或“记住我”的用户才能访问;
 //        filterChainDefinitionMap.put("/**", "user");
-
 
         //当项目访问其他没有通过认证的URL时，会默认跳转到/login，如果不设置默认会自动寻找Web工程根目录下的"/login.jsp"页面
         shiroFilterFactoryBean.setLoginUrl("/login");
