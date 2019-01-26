@@ -6,7 +6,7 @@ spring:
     driver-class-name: com.mysql.cj.jdbc.Driver
 
   thymeleaf:
-    cache: false #在pom配置了热部署，此处设置false，用于禁用模板引擎编译的缓存结果。这样更改html后，使用Ctrl+F9(IDEA)更新
+    cache: false #禁用模板引擎编译的缓存结果。由热部署来实现，更改代码后，使用Ctrl+F9(IDEA)更新
     mode: LEGACYHTML5 #避免thymeleaf对html文件的严格校验（如检查标签必须对称等）
 
   #使用jpa技术，运行实体代码自动生成数据表
