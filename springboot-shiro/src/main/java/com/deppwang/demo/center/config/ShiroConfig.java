@@ -29,7 +29,7 @@ import java.util.Properties;
 @Configuration
 public class ShiroConfig {
     /**
-     * 将MyShiroRealm的配置注入到IoC容器，
+     * 将 MyShiroRealm 的配置注入到 IoC 容器，
      *
      * @return
      */
@@ -37,7 +37,7 @@ public class ShiroConfig {
     public MyShiroRealm myShiroRealm() {
         System.out.println("ShiroConfig.myShiroRealm()");
         MyShiroRealm myShiroRealm = new MyShiroRealm();
-        //设置凭证(密码)验证器，用于SimpleAuthorizationInfo验证token中密码是否和数据库密码是否匹配
+        // 设置凭证(密码)验证器，用于 SimpleAuthorizationInfo 验证 token 中密码是否和数据库密码是否匹配
         myShiroRealm.setCredentialsMatcher(hashedCredentialsMatcher());
         return myShiroRealm;
     }
@@ -51,8 +51,8 @@ public class ShiroConfig {
     @Bean
     public HashedCredentialsMatcher hashedCredentialsMatcher() {
         HashedCredentialsMatcher hashedCredentialsMatcher = new HashedCredentialsMatcher();
-        hashedCredentialsMatcher.setHashAlgorithmName("md5");//散列算法:这里使用MD5算法;
-        hashedCredentialsMatcher.setHashIterations(2);//散列的次数，比如散列两次，相当于 md5(md5(""));
+        hashedCredentialsMatcher.setHashAlgorithmName("md5");// 散列算法: 这里使用 MD5 算法;
+        hashedCredentialsMatcher.setHashIterations(2);// 散列的次数，比如散列两次，相当于 md5(md5(""));
         return hashedCredentialsMatcher;
     }
 
@@ -77,17 +77,17 @@ public class ShiroConfig {
 
         //配置退出 过滤器,其中的具体的退出代码Shiro已经替我们实现了
         filterChainDefinitionMap.put("/logout", "logout");
-        //authc:所有url都必须认证通过才可以访问;
-        filterChainDefinitionMap.put("/**", "authc");
+        //authc: 所有 url 都必须认证通过才可以访问;
+//        filterChainDefinitionMap.put("/**", "authc");
 
-//        //user:需要已登录或“记住我”的用户才能访问;
-//        filterChainDefinitionMap.put("/**", "user");
+//        //user: 需要已登录或“记住我”的用户才能访问; 不使用 user 将拦截 /login post
+        filterChainDefinitionMap.put("/**", "user");
 
-        //当项目访问其他没有通过认证的URL时，会默认跳转到/login，如果不设置默认会自动寻找Web工程根目录下的"/login.jsp"页面
+        // 当项目访问其他没有通过认证的 URL 时，会默认跳转到 /login，如果不设置默认会自动寻找Web工程根目录下的"/login.jsp"页面
         shiroFilterFactoryBean.setLoginUrl("/login");
-        //登录成功后要跳转的链接
-        shiroFilterFactoryBean.setSuccessUrl("/index");
-        //当用户访问没有权限的URL时，跳转到未授权界面
+        // 登录成功后要跳转的链接
+        shiroFilterFactoryBean.setSuccessUrl("/index2");
+        // 当用户访问没有权限的 URL 时，跳转到未授权界面
         shiroFilterFactoryBean.setUnauthorizedUrl("/403");
         shiroFilterFactoryBean.setFilterChainDefinitionMap(filterChainDefinitionMap);
         return shiroFilterFactoryBean;
@@ -95,7 +95,7 @@ public class ShiroConfig {
 
 
     /**
-     * 为shiro权限控制开启aop注解支持，这样才能使用@RequiresPermissions等注解
+     * 为 shiro 权限控制开启aop注解支持，这样才能使用 @RequiresPermissions 等注解
      * 使用代理方式，所以需要开启代码支持
      *
      * @param securityManager
