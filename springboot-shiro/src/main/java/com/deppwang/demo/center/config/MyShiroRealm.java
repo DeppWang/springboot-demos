@@ -44,7 +44,7 @@ public class MyShiroRealm extends AuthorizingRealm {
         // 获取登录的用户名
         String username = (String) authenticationToken.getPrincipal();
         // 根据用户名在数据库中查找此用户
-        // 实际项目中，这里可以根据实际情况做缓存，如果不做，Shiro 自己也是有时间间隔机制，2分钟内不会重复执行该方法
+        // 实际项目中，这里可以根据实际情况做缓存，如果不做，Shiro 自己也是有时间间隔机制，2分钟内不会重复执行该方法?
         UserInfo userInfo = userService.findByUsername(username);
         if (userInfo == null) {
             return null;
