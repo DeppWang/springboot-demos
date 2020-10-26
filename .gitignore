@@ -5,3 +5,14 @@
 /*/target
 /*/.idea
 /*/*.iml
+/*/mvnw
+/*/.idea
+/*/.mvn
+/*/HELP.md
+/*/mvnw.cmd
+/*/testdb.log
+/*/testdb.properties
+/*/testdb.script
+
+springboot-rabbitmq/.idea
+
