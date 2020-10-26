@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sessionConfig>
+
+    <!-- 缺省配置 -->
+    <defaultConfig>
+        <lifecycle>-1</lifecycle>
+    </defaultConfig>
+
+
+    <entries>
+
+        <!-- js 与 tr 将作为 cookie 传给前端 -->
+
+        <!-- 自定义 javaSessionId-->
+        <entry name="sessionId">
+            <key>js</key>
+            <path>/</path>
+            <httponly>true</httponly>
+            <readonly>true</readonly>
+            <encrypt>false</encrypt>
+            <storeType>cookie</storeType>
+        </entry>
+
+        <entry name="trackId">
+            <key>tr</key>
+            <path>/</path>
+            <lifecycle>311040000</lifecycle>
+            <httponly>true</httponly>
+            <readonly>true</readonly>
+            <encrypt>false</encrypt>
+            <storeType>cookie</storeType>
+        </entry>
+
+
+        <entry name="lastVisitTime">
+            <readonly>false</readonly>
+            <storeType>cache</storeType>
+        </entry>
+
+<!--        <entry name="SessionCaptcha">-->
+<!--            <readonly>false</readonly>-->
+<!--            <storeType>cache</storeType>-->
+<!--        </entry>-->
+
+<!--        <entry name="ittm_c">-->
+<!--            <storeType>cache</storeType>-->
+<!--        </entry>-->
+
+<!--        <entry name="mobile">-->
+<!--            <storeType>cache</storeType>-->
+<!--        </entry>-->
+
+<!--        <entry name="loginUserId">-->
+<!--            <storeType>cache</storeType>-->
+<!--            <type>java.lang.String</type>-->
+<!--        </entry>-->
+
+        <entry name="__user__">
+            <storeType>cache</storeType>
+            <type>wang.depp.session.entity.User</type> <!--类型用于 String 转换 对象-->
+        </entry>
+
+
+
+    </entries>
+
+
+    <globalinfo>
+        <key name="blowfish_key">dhDMNcMlHx7DR0Y=</key>
+        <key name="key">value</key>
+    </globalinfo>
+
+
+</sessionConfig>
