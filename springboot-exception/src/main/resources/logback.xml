@@ -1,0 +1,62 @@
+<configuration>
+
+    <include resource="org/springframework/boot/logging/logback/base.xml"/>
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <!-- encoders are assigned the type
+             ch.qos.logback.classic.encoder.PatternLayoutEncoder by default -->
+        <!--        <encoder>-->
+        <!--            <pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>-->
+        <!--        </encoder>-->
+        <layout class="ch.qos.logback.classic.PatternLayout">
+            <Pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</Pattern>
+        </layout>
+    </appender>
+
+    <appender name="baselog"
+              class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <File>log/app.log</File>
+        <!--根据日期存放日志，每个文件限制 64MB -->
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>log/app.log.%d.%i</fileNamePattern>
+            <timeBasedFileNamingAndTriggeringPolicy
+                    class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+                <!--or whenever the file size reaches 64 MB-->
+                <maxFileSize>64 MB</maxFileSize>
+            </timeBasedFileNamingAndTriggeringPolicy>
+        </rollingPolicy>
+        <!--日志文件的日志格式-->
+        <encoder>
+            <pattern>
+                %d %p (%file:%line\)- %m%n
+            </pattern>
+            <charset>UTF-8</charset>
+            <!-- 此处设置字符集 -->
+        </encoder>
+    </appender>
+
+    <!--    <springProfile name="test | dev">-->
+    <!--        <appender-ref ref="STDOUT" />-->
+    <!--        <appender-ref ref="baselog"/>-->
+    <!--    </springProfile>-->
+    <springProfile name="test,dev">
+        <logger name="wang.depp" level="debug" additivity="false">
+            <appender-ref ref="STDOUT"/>
+<!--            <appender-ref ref="baselog"/>-->
+        </logger>
+        <logger name="com.netflix" level="error">
+            <appender-ref ref="STDOUT"/>
+            <appender-ref ref="baselog"/>
+        </logger>
+    </springProfile>
+
+    <springProfile name="pre,pro">
+        <logger name="wang.depp" level="error">
+            <appender-ref ref="STDOUT"/>
+<!--            <appender-ref ref="baselog"/>-->
+        </logger>
+        <logger name="com.netflix" level="error">
+            <appender-ref ref="STDOUT"/>
+            <appender-ref ref="baselog"/>
+        </logger>
+    </springProfile>
+</configuration>

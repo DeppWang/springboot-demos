@@ -14,6 +14,8 @@
         <module>springboot-session</module>
         <module>springboot-rabbitmq</module>
         <module>springboot-rabbitmq-lxf</module>
+        <module>springboot-openfeign</module>
+        <module>springboot-exception</module>
         <module>springboot-redis</module>
         <module>springboot-mybatis</module>
     </modules>
