@@ -1,5 +1,3 @@
-#Java #Redis #Redisson #Spring-Boot
-
 ## Redisson 与 SpringBoot 的版本对应关系
 
 ```xml
@@ -76,7 +74,11 @@ spring.redis.password=12345
 spring.redis.timeout=6000
 ```
 
+## Redisson 如果做到不用配置类，可自动使用的
 
+使用 RedissonAutoConfiguration 与  RedissonProperties 实现
+- https://github.com/redisson/redisson/blob/redisson-3.17.5/redisson-spring-boot-starter/src/main/java/org/redisson/spring/starter/RedissonAutoConfiguration.java
+- https://github.com/redisson/redisson/blob/redisson-3.17.5/redisson-spring-boot-starter/src/main/java/org/redisson/spring/starter/RedissonProperties.java
 
 ## Link
 - https://github.com/redisson/redisson
